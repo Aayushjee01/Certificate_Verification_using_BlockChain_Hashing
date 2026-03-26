@@ -1,0 +1,269 @@
+{
+    "project": "Neubrutalism UI Collection",
+    "theme": {
+        "style": "neubrutalism",
+        "colors": {
+            "primary": "#D9FF00",
+            "secondary": "#B39DDB",
+            "accent": "#FFB74D",
+            "background": "#F5F5F5",
+            "text": "#000000",
+            "border": "#000000"
+        },
+        "typography": {
+            "heading": "Bold Sans-serif",
+            "body": "Regular Sans-serif"
+        },
+        "border": {
+            "width": "3px",
+            "radius": "12px"
+        }
+    },
+    "screens": [
+        {
+            "name": "NFT Landing Page",
+            "type": "landing",
+            "layout": "centered",
+            "components": [
+                {
+                    "type": "navbar",
+                    "logo": "Marble House",
+                    "actions": [
+                        {
+                            "icon": "telegram"
+                        },
+                        {
+                            "icon": "discord"
+                        }
+                    ]
+                },
+                {
+                    "type": "hero",
+                    "title": "Unlock the Future",
+                    "subtitle": "Join our NFT waitlist",
+                    "input": {
+                        "type": "email",
+                        "placeholder": "Your email address"
+                    },
+                    "cta": {
+                        "text": "Join the waitlist",
+                        "style": "primary-button"
+                    }
+                },
+                {
+                    "type": "card_grid",
+                    "columns": 4,
+                    "items": [
+                        {
+                            "character": "cat",
+                            "style": "cartoon",
+                            "background": "gradient"
+                        },
+                        {
+                            "character": "human",
+                            "style": "cartoon"
+                        },
+                        {
+                            "character": "flame",
+                            "style": "cartoon"
+                        },
+                        {
+                            "character": "rainbow_man",
+                            "style": "cartoon"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "NFT Mobile App",
+            "type": "mobile_ui",
+            "components": [
+                {
+                    "type": "nft_card",
+                    "title": "Random NFT Pack",
+                    "price": "12.34 ETH",
+                    "timer": "15h 35m 08s",
+                    "cta": "Start Now"
+                },
+                {
+                    "type": "profile",
+                    "username": "Lewis Webber",
+                    "handle": "@LewWebNFTs",
+                    "stats": {
+                        "followers": 1432,
+                        "nft_value": "10k",
+                        "owned": 126
+                    },
+                    "cta": "Start Following"
+                },
+                {
+                    "type": "nft_detail",
+                    "title": "Too Much Rainbow",
+                    "creator": "Lewis Webber",
+                    "price": "0.30 ETH",
+                    "likes": 41,
+                    "timer": "12d 15h 35m",
+                    "cta": "Place Bid"
+                }
+            ]
+        },
+        {
+            "name": "E-commerce Landing",
+            "type": "landing",
+            "layout": "split",
+            "components": [
+                {
+                    "type": "navbar",
+                    "logo": "Toster",
+                    "menu": [
+                        "Men",
+                        "Women",
+                        "Kids",
+                        "Customize"
+                    ],
+                    "actions": [
+                        "Cart",
+                        "Profile"
+                    ]
+                },
+                {
+                    "type": "hero",
+                    "left": {
+                        "tag": "Hot Collection",
+                        "title": "Level up your style with our Quality Cool Outfits",
+                        "description": "Fashion helps express yourself and build connections.",
+                        "cta": "Explore Now"
+                    },
+                    "right": {
+                        "image": "shopping_girl",
+                        "badge": "40% OFF"
+                    }
+                },
+                {
+                    "type": "stats",
+                    "items": [
+                        {
+                            "label": "Products",
+                            "value": "5000+"
+                        },
+                        {
+                            "label": "Customer Reviews",
+                            "value": "10k+"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Social Media UI",
+            "type": "dashboard",
+            "layout": "three_column",
+            "components": [
+                {
+                    "type": "sidebar",
+                    "menu": [
+                        "Friends",
+                        "Marketplace",
+                        "Groups",
+                        "Watch"
+                    ]
+                },
+                {
+                    "type": "feed",
+                    "elements": [
+                        {
+                            "type": "story_bar"
+                        },
+                        {
+                            "type": "post_input",
+                            "placeholder": "What's on your mind?"
+                        },
+                        {
+                            "type": "post",
+                            "author": "Kathryn Murphy",
+                            "content": "Travel experience",
+                            "media": "image"
+                        }
+                    ]
+                },
+                {
+                    "type": "right_panel",
+                    "sections": [
+                        {
+                            "type": "friend_requests",
+                            "items": [
+                                {
+                                    "name": "Michael Schofield",
+                                    "mutual": 163
+                                }
+                            ]
+                        },
+                        {
+                            "type": "contacts_list"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Dance Studio Landing",
+            "type": "landing",
+            "layout": "split",
+            "components": [
+                {
+                    "type": "navbar",
+                    "logo": "MSTUDIO",
+                    "menu": [
+                        "Courses",
+                        "Blog",
+                        "About",
+                        "Locations"
+                    ],
+                    "actions": [
+                        "Login",
+                        "Sign Up"
+                    ]
+                },
+                {
+                    "type": "hero",
+                    "left": {
+                        "title": "Burn Up The Dance Floor",
+                        "description": "Dance therapy helps emotional, cognitive, and physical integration.",
+                        "cta_primary": "Start Journey",
+                        "cta_secondary": "View Blog"
+                    },
+                    "right": {
+                        "image": "dancer_black_white",
+                        "shape": "rounded_frame"
+                    }
+                }
+            ]
+        }
+    ],
+    "ui_elements": {
+        "buttons": {
+            "primary": {
+                "background": "#D9FF00",
+                "border": "3px solid black",
+                "shadow": "offset",
+                "text": "bold"
+            },
+            "secondary": {
+                "background": "#FFFFFF",
+                "border": "3px solid black"
+            }
+        },
+        "cards": {
+            "style": "flat",
+            "border": "3px solid black",
+            "shadow": "hard",
+            "radius": "12px"
+        },
+        "inputs": {
+            "border": "3px solid black",
+            "padding": "12px",
+            "radius": "8px"
+        }
+    }
+}
