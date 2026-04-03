@@ -10,8 +10,12 @@ const PORT = process.env.PORT || 5000;
 /**
  * Middleware setup
  */
-app.use(cors()); // Allow frontend to fetch data from different domains/ports
-app.use(express.json()); // Universal JSON parsing for request bodies
+app.use(cors({ origin: '*' })); // Permissive CORS for debugging
+app.use((req, res, next) => {
+  console.log(`[${new Date().toLocaleTimeString()}] ${req.method} ${req.url}`);
+  next();
+});
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
 /**

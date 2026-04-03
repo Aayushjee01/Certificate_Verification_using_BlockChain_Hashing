@@ -51,7 +51,7 @@ export default function AdminUpload({ account, user }) {
       uploadData.append('studentName', formData.studentName);
       uploadData.append('certificateId', formData.certificateId);
 
-      const response = await fetch('http://localhost:5000/api/certificates/upload', {
+      const response = await fetch('http://localhost:5050/api/certificates/upload', {
         method: 'POST',
         body: uploadData,
       });
@@ -125,15 +125,13 @@ export default function AdminUpload({ account, user }) {
               </div>
             )}
 
-            {/* Wallet warning */}
-            {!account && (
-              <div className="flex items-start gap-3 p-4 bg-neub-accent border-[3px] border-black shadow-[4px_4px_0_0_#000] rounded-xl">
-                <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <p className="text-xs font-black uppercase tracking-tight">
-                  Wallet offline. Connect MetaMask to finalize on-chain records.
-                </p>
-              </div>
-            )}
+            {/* Wallet status (Information only) */}
+            <div className="flex items-start gap-3 p-4 bg-neub-primary/20 border-[3px] border-black shadow-[4px_4px_0_0_#000] rounded-xl">
+              <ShieldCheck className="w-5 h-5 flex-shrink-0 mt-0.5 text-black" />
+              <p className="text-xs font-black uppercase tracking-tight">
+                Backend-Signing Active: Certificates will be permanently sealed via the secure organization wallet.
+              </p>
+            </div>
 
             {/* ── Student Name + Serial ID side by side ── */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

@@ -39,7 +39,7 @@ export default function VerifyCertificate() {
         formData.append('hash', verificationId);
       }
 
-      const response = await fetch('http://localhost:5000/api/certificates/verify', {
+      const response = await fetch('http://localhost:5050/api/certificates/verify', {
         method: 'POST',
         body: formData,
       });

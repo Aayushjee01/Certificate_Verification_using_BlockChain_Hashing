@@ -58,7 +58,7 @@ export const parseGithubCallback = () => {
  * Exchanges authorization code for a session and user data via our backend.
  */
 export const exchangeCodeForSession = async (code) => {
-  const res = await fetch('http://localhost:5000/api/auth/github/callback', {
+  const res = await fetch('http://localhost:5050/api/auth/github/callback', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ code })
