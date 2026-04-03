@@ -1,21 +1,25 @@
-# Certificate Verification using Blockchain Hashing
+# ⛓️ Blockchain Certificate Verification System
 
-A React application for verifying certificates using blockchain technology.
+This project is a complete solution for issuing and verifying certificates on an immutable blockchain ledger.
 
-## Features
+## 📂 Project Structure
 
-- User authentication
-- Certificate upload and verification
-- Blockchain-based hashing for security
+- **`/frontend`**: React application (Vite, Tailwind, Neubrutalism UI).
+- **`/backend`**: Node.js/Express API (Multer, SHA-256 hashing, Ethers.js).
 
-## Getting Started
+## 🚀 Getting Started
 
-1. Install dependencies: `npm install`
-2. Run the development server: `npm run dev`
+### 1. Setup Backend
+```bash
+cd backend
+npm install
+# Configure .env
+npm start
+```
 
-## Technologies Used
-
-- React
-- Vite
-- Tailwind CSS
-- Blockchain utilities
+### 2. Setup Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
