@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Loader2, Shield, CheckCircle2, XCircle } from 'lucide-react';
-import { parseGithubCallback, exchangeCodeForToken, fetchGithubUser, saveSession } from '../utils/auth';
+import { parseGithubCallback, exchangeCodeForSession, saveSession } from '../utils/auth';
 
 export default function AuthCallback({ onLogin }) {
   const navigate = useNavigate();
@@ -17,28 +17,23 @@ export default function AuthCallback({ onLogin }) {
         setMessage('Reading authorization code...');
         const { code } = parseGithubCallback();
 
-        // 2. Exchange code for token (needs backend in production)
-        setMessage('Exchanging code for access token...');
-        const token = await exchangeCodeForToken(code);
+        // 2. Securely exchange code for user session via Backend
+        setMessage('Verifying with secure backend...');
+        const { user: githubUser, accessToken } = await exchangeCodeForSession(code);
 
-        // 3. Fetch user profile
-        setMessage('Fetching your GitHub profile...');
-        const githubUser = await fetchGithubUser(token);
-
-        // 4. Save session
+        // 3. Save session locally
         const sessionUser = {
-          login: githubUser.login,
-          name: githubUser.name || githubUser.login,
+          login: githubUser.username,
+          name: githubUser.name || githubUser.username,
           email: githubUser.email,
-          avatar: githubUser.avatar_url,
+          avatar: githubUser.avatar,
           bio: githubUser.bio,
-          repos: githubUser.public_repos,
-          followers: githubUser.followers,
+          accessToken: accessToken
         };
         saveSession(sessionUser);
         setUser(sessionUser);
 
-        // 5. Notify App level
+        // 4. Notify App state
         if (onLogin) onLogin(sessionUser);
 
         setStatus('success');
@@ -47,8 +42,8 @@ export default function AuthCallback({ onLogin }) {
         // Clean the URL
         window.history.replaceState({}, document.title, '/auth/callback');
 
-        // Redirect to admin after 2s
-        setTimeout(() => navigate('/upload'), 2000);
+        // Redirect to admin portal
+        setTimeout(() => navigate('/upload'), 1500);
       } catch (err) {
         console.error('Auth callback error:', err);
         setStatus('error');

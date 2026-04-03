@@ -32,20 +32,30 @@ export default function VerifyCertificate() {
     setResult(null);
 
     try {
-      let hashToVerify;
+      const formData = new FormData();
       if (file) {
-        hashToVerify = await generateHash(file);
+        formData.append('certificate', file);
       } else {
-        hashToVerify = verificationId;
+        formData.append('hash', verificationId);
       }
 
-      const isValid = await verifyOnBlockchain(hashToVerify);
-      setResult({ isValid, error: null });
+      const response = await fetch('http://localhost:5000/api/certificates/verify', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setResult({ isValid: data.data.isValid, error: null });
+      } else {
+        setResult({ isValid: false, error: data.message });
+      }
     } catch (err) {
       console.error(err);
       setResult({
         isValid: false,
-        error: err.message || "An error occurred during verification."
+        error: "Could not connect to verification server. Ensure backend is running."
       });
     } finally {
       setIsVerifying(false);

@@ -35,10 +35,7 @@ export default function AdminUpload({ account, user }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!account) {
-      setTxStatus({ ...txStatus, error: 'Please connect your MetaMask wallet to proceed.' });
-      return;
-    }
+    
     if (!formData.file || !formData.studentName || !formData.certificateId) {
       alert('All fields are required!');
       return;
@@ -48,14 +45,37 @@ export default function AdminUpload({ account, user }) {
     setTxStatus({ success: false, hash: null, error: null });
 
     try {
-      const contentHash = await generateHash(formData.file);
-      const transactionHash = await storeOnBlockchain(contentHash);
-      setTxStatus({ success: true, hash: transactionHash, error: null });
-      setFormData({ studentName: '', certificateId: '', file: null });
-      setFilePreview(null);
+      // Use the Backend API to handle the upload and signing
+      const uploadData = new FormData();
+      uploadData.append('certificate', formData.file);
+      uploadData.append('studentName', formData.studentName);
+      uploadData.append('certificateId', formData.certificateId);
+
+      const response = await fetch('http://localhost:5000/api/certificates/upload', {
+        method: 'POST',
+        body: uploadData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setTxStatus({ 
+          success: true, 
+          hash: result.data.transactionHash, 
+          error: null 
+        });
+        setFormData({ studentName: '', certificateId: '', file: null });
+        setFilePreview(null);
+      } else {
+        throw new Error(result.message);
+      }
     } catch (err) {
       console.error(err);
-      setTxStatus({ success: false, hash: null, error: err.message || 'Transaction failed.' });
+      setTxStatus({ 
+        success: false, 
+        hash: null, 
+        error: err.message || 'The server failed to process the blockchain transaction.' 
+      });
     } finally {
       setIsUploading(false);
     }
@@ -224,7 +244,7 @@ export default function AdminUpload({ account, user }) {
             {/* Submit */}
             <button
               type="submit"
-              disabled={isUploading || !account}
+              disabled={isUploading}
               className={`w-full btn-brutal-primary py-5 text-base ${isUploading ? 'opacity-70' : ''}`}
             >
               {isUploading ? (
