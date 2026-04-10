@@ -21,42 +21,40 @@ body {
   min-height: 100vh;
 }
 
-.brutal-card {
-  @apply bg-white shadow-brutal rounded-xl transition-all;
-  border: 3px solid black;
+@layer components {
+  .brutal-card {
+    @apply bg-white shadow-brutal rounded-xl transition-all border-[3px] border-black;
+  }
+
+  .brutal-card:hover {
+    @apply shadow-brutal-lg -translate-x-1 -translate-y-1;
+  }
+
+  .btn-brutal-primary {
+    @apply px-8 py-3 bg-neub-primary shadow-brutal hover:shadow-brutal-active hover:translate-x-0.5 hover:translate-y-0.5 text-black font-black uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 border-[3px] border-black;
+  }
+
+  .btn-brutal-secondary {
+    @apply px-8 py-3 bg-neub-secondary shadow-brutal hover:shadow-brutal-active hover:translate-x-0.5 hover:translate-y-0.5 text-black font-black uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 border-[3px] border-black;
+  }
+
+  .btn-brutal-outline {
+    @apply px-8 py-3 bg-white shadow-brutal hover:shadow-brutal-active hover:translate-x-0.5 hover:translate-y-0.5 text-black font-black uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 border-[3px] border-black;
+  }
+
+  .brutal-input {
+    @apply w-full px-10 py-3.5 bg-white rounded-xl focus:bg-neub-primary/10 outline-none transition-all font-bold placeholder:text-gray-500 border-[3px] border-black;
+  }
+
+  .brutal-tag {
+    @apply px-3 py-1 bg-neub-accent font-black text-xs uppercase tracking-tighter rounded-full inline-block border-2 border-black;
+  }
 }
 
-.brutal-card:hover {
-  @apply shadow-brutal-lg -translate-x-1 -translate-y-1;
-}
-
-.btn-brutal-primary {
-  @apply px-8 py-3 bg-neub-primary shadow-brutal hover:shadow-brutal-active hover:translate-x-0.5 hover:translate-y-0.5 text-black font-black uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2;
-  border: 3px solid black;
-}
-
-.btn-brutal-secondary {
-  @apply px-8 py-3 bg-neub-secondary shadow-brutal hover:shadow-brutal-active hover:translate-x-0.5 hover:translate-y-0.5 text-black font-black uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2;
-  border: 3px solid black;
-}
-
-.btn-brutal-outline {
-  @apply px-8 py-3 bg-white shadow-brutal hover:shadow-brutal-active hover:translate-x-0.5 hover:translate-y-0.5 text-black font-black uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2;
-  border: 3px solid black;
-}
-
-.brutal-input {
-  @apply w-full px-10 py-3.5 bg-white rounded-xl focus:bg-neub-primary/10 outline-none transition-all font-bold placeholder:text-gray-500;
-  border: 3px solid black;
-}
-
-.brutal-tag {
-  @apply px-3 py-1 bg-neub-accent font-black text-xs uppercase tracking-tighter rounded-full inline-block;
-  border: 2px solid black;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  @apply font-black leading-none uppercase tracking-tight;
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-black leading-none uppercase tracking-tight;
+  }
 }
 
 /* Custom scrollbar */

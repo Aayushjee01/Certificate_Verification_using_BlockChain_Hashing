@@ -208,22 +208,24 @@ export default function VerifyCertificate() {
                 key="result"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className={`brutal-card p-12 border-t-8 flex flex-col items-center text-center min-h-[400px] shadow-brutal-lg ${result.isValid ? 'bg-neub-primary border-t-black' : 'bg-red-500 border-t-black text-white'
+                className={`brutal-card p-12 border-t-8 flex flex-col items-center text-center min-h-[400px] shadow-brutal-lg ${result.isValid
+                  ? '!bg-neub-primary border-t-black'
+                  : '!bg-red-50 border-t-red-600'
                   }`}
               >
-                <div className={`w-24 h-24 rounded-2xl border-4 border-black flex items-center justify-center mb-10 shadow-[8px_8px_0_0_#000] bg-white ${result.isValid ? 'text-black' : 'text-red-500'
+                <div className={`w-24 h-24 rounded-2xl border-4 border-black flex items-center justify-center mb-10 shadow-[8px_8px_0_0_#000] bg-white ${result.isValid ? 'text-black' : 'text-red-600'
                   }`}>
                   {result.isValid ? <CheckCircle2 size={56} /> : <ShieldAlert size={56} />}
                 </div>
 
-                <h3 className="text-3xl font-black mb-6 uppercase tracking-tight italic leading-none">
+                <h3 className={`text-3xl font-black mb-6 uppercase tracking-tight italic leading-none ${result.isValid ? 'text-black' : 'text-red-700'}`}>
                   {result.isValid ? 'VALID ✅' : 'FORGERY ❌'}
                 </h3>
 
-                <p className={`text-lg font-bold mb-12 leading-tight ${result.isValid ? 'text-black' : 'text-white'}`}>
+                <p className={`text-lg font-bold mb-12 leading-tight ${result.isValid ? 'text-black' : 'text-red-900'}`}>
                   {result.isValid
                     ? "Cryptographic proof confirmed. This document is part of the chain."
-                    : result.error || "No record found. Document state has been modified or forged."}
+                    : result.error || "No record found on blockchain. This document appears to be fake or modified."}
                 </p>
 
                 {result.isValid && (
@@ -238,7 +240,7 @@ export default function VerifyCertificate() {
 
                 <button
                   onClick={() => setResult(null)}
-                  className={`mt-10 text-[10px] font-black uppercase tracking-widest underline decoration-2 ${result.isValid ? 'text-black' : 'text-white'}`}
+                  className={`mt-10 text-[10px] font-black uppercase tracking-widest underline decoration-2 ${result.isValid ? 'text-black' : 'text-black opacity-60'}`}
                 >
                   Restart Validation
                 </button>

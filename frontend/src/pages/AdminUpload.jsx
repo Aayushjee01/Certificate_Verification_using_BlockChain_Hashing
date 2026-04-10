@@ -261,7 +261,7 @@ export default function AdminUpload({ account, user }) {
               <motion.div
                 initial="hidden" animate="visible" exit="hidden"
                 variants={statusVariants}
-                className={`brutal-card p-8 border-t-8 ${txStatus.success ? 'bg-neub-primary border-t-black' : 'bg-red-400 text-white border-t-black'}`}
+                className={`brutal-card p-8 border-t-8 ${txStatus.success ? '!bg-neub-primary border-t-black' : '!bg-red-400 text-white border-t-black'}`}
               >
                 <div className="flex items-center gap-3 mb-5">
                   {txStatus.success
@@ -271,25 +271,35 @@ export default function AdminUpload({ account, user }) {
                     {txStatus.success ? 'Sealed!' : 'Failed'}
                   </h3>
                 </div>
-                <p className={`text-sm font-bold mb-7 leading-tight ${txStatus.success ? 'text-black' : 'text-white'}`}>
+                <p className={`text-sm font-bold mb-7 leading-tight ${txStatus.success ? 'text-black' : 'text-white/90'}`}>
                   {txStatus.success
                     ? 'Certificate hash is now permanently part of the global ledger.'
-                    : txStatus.error}
+                    : 'We hit a snag while trying to seal this record onto the blockchain.'}
                 </p>
-                {txStatus.success && (
-                  <div className="space-y-5">
+                <div className="space-y-5">
+                  {!txStatus.success && (
+                    <div className="p-4 bg-white/20 border-[3px] border-white/30 rounded-xl">
+                      <p className="text-[10px] text-white/70 uppercase tracking-widest font-black mb-1">Error Trace</p>
+                      <p className="text-xs font-mono text-white break-all leading-tight italic">
+                        {txStatus.error}
+                      </p>
+                    </div>
+                  )}
+                  {txStatus.success && txStatus.hash && (
                     <div className="p-4 bg-white border-[3px] border-black rounded-xl shadow-[4px_4px_0_0_#000]">
                       <p className="text-[10px] text-gray-400 uppercase tracking-widest font-black mb-1">Tx Hash</p>
                       <p className="text-xs font-mono text-black break-all select-all">{txStatus.hash}</p>
                     </div>
-                    <button
-                      onClick={() => setTxStatus({ success: false, hash: null, error: null })}
-                      className="w-full py-3 text-xs font-black uppercase tracking-widest text-black bg-white border-[3px] border-black shadow-brutal hover:shadow-none transition-all rounded-xl"
-                    >
-                      Dismiss
-                    </button>
-                  </div>
-                )}
+                  )}
+                  <button
+                    onClick={() => setTxStatus({ success: false, hash: null, error: null })}
+                    className={`w-full py-3 text-xs font-black uppercase tracking-widest border-[3px] border-black shadow-brutal hover:shadow-none transition-all rounded-xl ${
+                      txStatus.success ? 'bg-white text-black' : 'bg-black text-white'
+                    }`}
+                  >
+                    Dismiss Message
+                  </button>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
